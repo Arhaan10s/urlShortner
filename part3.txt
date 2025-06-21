@@ -1,0 +1,84 @@
+Technical Interview -
+
+1. Front-End: useState vs. useReducer in React
+• useState: Simpler, used for managing small, isolated pieces of state (e.g., form inputs, toggles).
+
+Example:
+const [count, setCount] = useState(0);
+
+• useReducer: Better for complex or related state logic or when updates depend on previous state.
+Example:
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "increment": return { count: state.count + 1 };
+    case "decrement": return { count: state.count - 1 };
+    default: return state;
+  }
+};
+
+const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+When to choose:
+- useState: Simple local state.
+- useReducer: Complex state transitions, forms, global context.
+
+2. Back-End: Handling CORS in Node.js/Express
+Use cors middleware for simple setup:
+
+const cors = require('cors');
+const express = require('express');
+const app = express();
+
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
+
+app.listen(8000);
+
+Custom example:
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+3. Database: SQL vs. NoSQL
+
+SQL (Relational Databases):
+-Data is stored in tables with rows and columns.
+-Requires a fixed structure (schema).
+-Examples: PostgreSQL, MySQL.
+-Best for: Banking, E-commerce, or any app with complex relationships between data.
+
+NoSQL (Non-Relational Databases):
+-Data is stored in flexible formats like JSON, key-value pairs, or documents.
+-No fixed schema, allows storing varied data easily.
+-Examples: MongoDB, Firebase, DynamoDB.
+-Best for: Real-time applications, analytics, or apps with large or changing datasets like chat apps
+
+Example Use Cases:
+- SQL (PostgreSQL): Inventory systems needing JOINs & strong relationships.
+- NoSQL (MongoDB): Real-time chat app, dynamic document storage.
+
+4. General: Debugging Performance in Full-Stack Apps
+
+Frontend (React):
+- Use React DevTools for analyzing re-renders.
+- Use Chrome DevTools for assets and network analysis.
+
+Backend (Node.js):
+- console.time()/console.timeEnd() for profiling.
+- Use logging middleware to trace routes.
+
+Database:
+- Check slow queries and add indexes.
+
+General Tools:
+- Use Redis caching for frequently accessed data.
+
+
+
