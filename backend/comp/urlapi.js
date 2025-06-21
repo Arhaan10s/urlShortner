@@ -5,16 +5,16 @@ const createUrl = async (req, res) => {
   try {
     const { originalUrl } = req.body;
 
-    const shortCode = crypto.randomBytes(4).toString("hex"); // e.g., '160777ef'
+    const shortCode = crypto.randomBytes(4).toString("hex"); 
 
     const url = await Url.create({
       originalUrl,
-      shortUrl: shortCode, // ✅ SAVE ONLY THE CODE here
+      shortUrl: shortCode, 
     });
 
     res.json({
       originalUrl: url.originalUrl,
-      shortUrl: shortCode, // ✅ return only the code here too
+      shortUrl: shortCode, 
     });
   } catch (err) {
     console.error(err);
